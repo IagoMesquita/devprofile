@@ -1,6 +1,7 @@
 import { 
   Container,
   Header, 
+  Icon, 
   UseInforDetail, 
   UserAvatar, 
   UserAvatarButton, 
@@ -25,6 +26,7 @@ export function Home() {
               <UserName>Iago</UserName>
             </UseInforDetail>
           </UserInfo>
+          <Icon name='power'/>
         </UserWrapper>
       </Header>
     </Container>
