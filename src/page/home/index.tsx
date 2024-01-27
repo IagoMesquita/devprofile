@@ -1,9 +1,32 @@
-import {Container, Title} from './styles'; 
+import { 
+  Container,
+  Header, 
+  UseInforDetail, 
+  UserAvatar, 
+  UserAvatarButton, 
+  UserGreenting, 
+  UserInfo,
+  UserName,
+  UserWrapper 
+} from './styles';
+import avatarDefault from '../../assets/avatar02.png'
 
 export function Home() {
   return (
     <Container>
-      <Title>Home Page</Title>
+      <Header>
+        <UserWrapper>
+          <UserInfo>
+            <UserAvatarButton onPress={()=> null}>
+              <UserAvatar source={avatarDefault}/>
+            </UserAvatarButton>
+            <UseInforDetail>
+              <UserGreenting>Olá,</UserGreenting>
+              <UserName>Iago</UserName>
+            </UseInforDetail>
+          </UserInfo>
+        </UserWrapper>
+      </Header>
     </Container>
   )
 }
