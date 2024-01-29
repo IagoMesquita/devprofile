@@ -6,13 +6,14 @@ import AppLoading from 'expo-app-loading'
 import { Home } from './src/page/Home';
 import SingIn from './src/page/SingIn';
 import SingUp from './src/page/SingUp';
+import { NavigationContainer } from '@react-navigation/native';
 
 
- 
+
 
 export default function App() {
   let [fontsLoaded, fontError] = useFonts({
-    Roboto_400Regular, 
+    Roboto_400Regular,
     Roboto_700Bold,
   });
 
@@ -21,10 +22,12 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      {/* <Home /> */}
-      {/* <SingIn/> */}
-      <SingUp/>
-    </ThemeProvider>
+    <NavigationContainer>
+      <ThemeProvider theme={theme}>
+        {/* <Home /> */}
+        {/* <SingIn/> */}
+        <SingUp />
+      </ThemeProvider>
+    </NavigationContainer>
   );
 }
