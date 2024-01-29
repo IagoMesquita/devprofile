@@ -3,7 +3,9 @@ import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/
 import { ThemeProvider } from 'styled-components/native';
 import theme from './src/global/styles/theme';
 import AppLoading from 'expo-app-loading'
-import { Home } from './src/page/home';
+import { Home } from './src/page/Home';
+import SingIn from './src/page/SingIn';
+import SingUp from './src/page/SingUp';
 
 
  
@@ -20,7 +22,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Home />
+      {/* <Home /> */}
+      {/* <SingIn/> */}
+      <SingUp/>
     </ThemeProvider>
   );
 }
