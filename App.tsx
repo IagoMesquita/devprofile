@@ -3,10 +3,8 @@ import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/
 import { ThemeProvider } from 'styled-components/native';
 import theme from './src/global/styles/theme';
 import AppLoading from 'expo-app-loading'
-import { Home } from './src/page/Home';
-import SingIn from './src/page/SingIn';
-import SingUp from './src/page/SingUp';
 import { NavigationContainer } from '@react-navigation/native';
+import { Routes } from './src/routes';
 
 
 
@@ -24,9 +22,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <ThemeProvider theme={theme}>
-        {/* <Home /> */}
-        {/* <SingIn/> */}
-        <SingUp />
+        <Routes/>
       </ThemeProvider>
     </NavigationContainer>
   );
