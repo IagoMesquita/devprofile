@@ -1,4 +1,4 @@
-import { ScrollView } from 'react-native';
+import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { Input } from '../../components/Forms/Input';
 import { Container, Content, CreateAccount, CreateAccountTitle, ForgotPasswordButtom, ForgotPasswordText, Icon, Logo, Title } from './styles';
 import { Buttom } from '../../components/Forms/Buttom';
@@ -6,7 +6,10 @@ import logo from '../../assets/logo.png';
 
 export default function SingIn() {
   return (
-    <>
+    <KeyboardAvoidingView
+      style={{flex: 1}}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
+    >
       <ScrollView
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{ flex: 1 }}
@@ -28,6 +31,6 @@ export default function SingIn() {
         <Icon name="log-in"/>
         <CreateAccountTitle>Criar uma conta</CreateAccountTitle>
       </CreateAccount>
-    </>
+    </KeyboardAvoidingView>
   )
 }
