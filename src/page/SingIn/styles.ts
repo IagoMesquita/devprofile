@@ -24,3 +24,11 @@ export const Logo = styled.Image`
   height: ${RFValue(160)}px;
   margin-bottom: ${RFValue(64)}px;
 `
+export const ForgotPasswordButtom = styled.TouchableOpacity`
+  margin-top: 24px;
+`
+export const ForgotPasswordText = styled.Text`
+  font-size: ${RFValue(18)}px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  color: ${({ theme }) => theme.colors.gray500};
+`

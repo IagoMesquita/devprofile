@@ -1,6 +1,6 @@
 import { ScrollView } from 'react-native';
 import { Input } from '../../components/Forms/Input';
-import { Container, Content, Logo, Title } from './styles';
+import { Container, Content, ForgotPasswordButtom, ForgotPasswordText, Logo, Title } from './styles';
 import { Buttom } from '../../components/Forms/Buttom';
 import logo from '../../assets/logo.png';
 
@@ -12,11 +12,14 @@ export default function SingIn() {
     >
       <Container>
         <Content>
-        <Logo source={logo}/>
+          <Logo source={logo} />
           <Title>Faça seu login</Title>
           <Input placeholder="Email" />
           <Input placeholder="Senha" />
-          <Buttom title="Entrar"/>
+          <Buttom title="Entrar" />
+          <ForgotPasswordButtom>
+            <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
+          </ForgotPasswordButtom>
         </Content>
       </Container>
     </ScrollView>
