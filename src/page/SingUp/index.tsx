@@ -1,7 +1,9 @@
 import { KeyboardAvoidingView, Platform, ScrollView, View } from "react-native";
 import { Input } from "../../components/Forms/Input";
-import { Container, Content, Title } from "./styles";
+import { BackToSingIn, BackToSingInTitle, Container, Content, Icon, Logo, Title } from "./styles";
 import { Buttom } from "../../components/Forms/Buttom";
+import logo from '../../assets/logo.png';
+
 
 export default function SingUp() {
   return (
@@ -16,6 +18,7 @@ export default function SingUp() {
       >
         <Container>
           <Content>
+            <Logo source={logo}/>
             <View>
               <Title>Crie sua conta</Title>
             </View>
@@ -26,6 +29,10 @@ export default function SingUp() {
           </Content>
         </Container>
       </ScrollView>
+      <BackToSingIn>
+        <Icon name="arrow-left" />
+        <BackToSingInTitle>Voltar para Login</BackToSingInTitle>
+      </BackToSingIn>
     </KeyboardAvoidingView>
   );
 }
