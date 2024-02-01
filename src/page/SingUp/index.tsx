@@ -3,9 +3,15 @@ import { Input } from "../../components/Forms/Input";
 import { BackToSingIn, BackToSingInTitle, Container, Content, Icon, Logo, Title } from "./styles";
 import { Buttom } from "../../components/Forms/Buttom";
 import logo from '../../assets/logo.png';
+import { useNavigation } from '@react-navigation/native';
+
+interface ScreenNavigationProps {
+  goBack: () => void;
+}
 
 
 export default function SingUp() {
+  const navigation = useNavigation<ScreenNavigationProps>()
   return (
     <KeyboardAvoidingView
       // enabled
@@ -29,7 +35,7 @@ export default function SingUp() {
           </Content>
         </Container>
       </ScrollView>
-      <BackToSingIn>
+      <BackToSingIn onPress={() => navigation.goBack()}>
         <Icon name="arrow-left" />
         <BackToSingInTitle>Voltar para Login</BackToSingInTitle>
       </BackToSingIn>
