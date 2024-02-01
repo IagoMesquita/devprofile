@@ -3,8 +3,15 @@ import { Input } from '../../components/Forms/Input';
 import { Container, Content, CreateAccount, CreateAccountTitle, ForgotPasswordButtom, ForgotPasswordText, Icon, Logo, Title } from './styles';
 import { Buttom } from '../../components/Forms/Buttom';
 import logo from '../../assets/logo.png';
+import { useNavigation } from '@react-navigation/native';
+
+interface ScreenNavigationProps {
+  navigate: (screen: string) => void;
+}
 
 export default function SingIn() {
+
+  const navigation = useNavigation<ScreenNavigationProps>()
   return (
     <KeyboardAvoidingView
       // enabled
@@ -30,7 +37,7 @@ export default function SingIn() {
           </Content>
         </Container>
       </ScrollView>
-      <CreateAccount>
+      <CreateAccount onPress={() => navigation.navigate('SingUp')}>
         <Icon name="log-in" />
         <CreateAccountTitle>Criar uma conta</CreateAccountTitle>
       </CreateAccount>
