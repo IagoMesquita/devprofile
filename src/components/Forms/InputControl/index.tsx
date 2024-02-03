@@ -1,9 +1,9 @@
 import { FunctionComponent } from 'react';
 import { TextInputProps } from 'react-native';
-import { Control } from 'react-hook-form';
+import { Control, Controller } from 'react-hook-form';
 
 import { Container } from "./styles";
-import theme from "../../../global/styles/theme";
+import { Input } from '../Input';
 
 interface InputProps extends TextInputProps {
   control: Control,
@@ -16,6 +16,19 @@ export const InputControl: FunctionComponent<InputProps> = ({
   ...otherProps
 }) => {
   return (
-    <Container/>
+    <Container>
+      <Controller
+        control={control}
+        render={({ field: { onChange, value } }) => (
+          < Input
+            placeholder={otherProps.placeholder}
+            onChangeText={onChange}
+            value={value}
+            {...otherProps}
+          />
+        )}
+        name={name}
+      />
+    </Container>
   )
 }
