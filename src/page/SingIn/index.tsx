@@ -11,9 +11,13 @@ interface ScreenNavigationProps {
   navigate: (screen: string) => void;
 }
 
+// interface IFormData  {
+//   email: string;
+//   password: string;
+// }
+
 interface IFormData  {
-  email: string;
-  password: string;
+  [name: string]: any;
 }
 
 export default function SingIn() {
