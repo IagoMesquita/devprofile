@@ -11,12 +11,12 @@ interface ScreenNavigationProps {
   navigate: (screen: string) => void;
 }
 
-// interface IFormData  {
+// interface IFormInputs  {
 //   email: string;
 //   password: string;
 // }
 
-interface IFormData  {
+interface IFormInputs  {
   [name: string]: any;
 }
 
@@ -30,7 +30,7 @@ export default function SingIn() {
     }
   })
 
-  const handleSingIn = (form: IFormData) => {
+  const handleSingIn = (form: IFormInputs) => {
     const data = {
       email: form.email,
       password: form.password,
@@ -55,17 +55,17 @@ export default function SingIn() {
             <View>
               <Title>Faça seu login</Title>
             </View>
-            <InputControl control={control} name='Email' placeholder='Digite seu email'
+            <InputControl control={control} name='email' placeholder='Digite seu email'
               autoCapitalize='none'
               autoCorrect={false}
               keyboardType='email-address'
             />
-            <InputControl control={control} name='Senha' placeholder='Digite seu senha'
+            <InputControl control={control} name='password' placeholder='Digite seu senha'
               autoCapitalize='none'
               autoCorrect={false}
               secureTextEntry
             />
-            <Buttom title="Entrar"  onPress={() => handleSubmit(handleSingIn)}/>
+            <Buttom title="Entrar"  onPress={handleSubmit(handleSingIn)}/>
             <ForgotPasswordButtom>
               <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
             </ForgotPasswordButtom>
