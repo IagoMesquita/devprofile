@@ -19,7 +19,7 @@ interface IFormData {
 export default function SingIn() {
 
   const { control, handleSubmit, formState: { errors } } = useForm<FieldValues>({
-    defaultValues:{
+    defaultValues: {
       email: "",
       password: ""
     }
@@ -44,8 +44,16 @@ export default function SingIn() {
             </View>
             {/* <Input placeholder="Email" /> */}
             {/* <Input placeholder="Senha" /> */}
-            <InputControl control={control} name='Email' placeholder='Digite seu email' />
-            <InputControl control={control} name='Senha' placeholder='Digite seu senha' />
+            <InputControl control={control} name='Email' placeholder='Digite seu email'
+              autoCapitalize='none'
+              autoCorrect={false}
+              keyboardType='email-address'
+            />
+            <InputControl control={control} name='Senha' placeholder='Digite seu senha'
+              autoCapitalize='none'
+              autoCorrect={false}
+              secureTextEntry
+            />
             <Buttom title="Entrar" />
             <ForgotPasswordButtom>
               <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
