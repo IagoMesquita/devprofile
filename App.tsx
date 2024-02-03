@@ -3,16 +3,15 @@ import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/
 import { ThemeProvider } from 'styled-components/native';
 import theme from './src/global/styles/theme';
 import AppLoading from 'expo-app-loading'
-import { Home } from './src/page/Home';
-import SingIn from './src/page/SingIn';
-import SingUp from './src/page/SingUp';
+import { NavigationContainer } from '@react-navigation/native';
+import { Routes } from './src/routes';
 
 
- 
+
 
 export default function App() {
   let [fontsLoaded, fontError] = useFonts({
-    Roboto_400Regular, 
+    Roboto_400Regular,
     Roboto_700Bold,
   });
 
@@ -21,10 +20,10 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      {/* <Home /> */}
-      {/* <SingIn/> */}
-      <SingUp/>
-    </ThemeProvider>
+    <NavigationContainer>
+      <ThemeProvider theme={theme}>
+        <Routes/>
+      </ThemeProvider>
+    </NavigationContainer>
   );
 }

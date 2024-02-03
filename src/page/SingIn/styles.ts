@@ -1,3 +1,4 @@
+import { Feather } from '@expo/vector-icons';
 import styled from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
 
@@ -18,3 +19,41 @@ export const Title = styled.Text`
   color: ${({ theme }) => theme.colors.light};
   margin-bottom: 24px;
 `;
+
+export const Logo = styled.Image`
+  width: ${RFValue(160)}px;
+  height: ${RFValue(160)}px;
+  margin-bottom: ${RFValue(64)}px;
+`
+export const ForgotPasswordButtom = styled.TouchableOpacity`
+  margin-top: 24px;
+`
+export const ForgotPasswordText = styled.Text`
+  font-size: ${RFValue(18)}px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  color: ${({ theme }) => theme.colors.gray500};
+`
+
+export const CreateAccount = styled.TouchableOpacity`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color:  ${({ theme }) => theme.colors.gray800};
+  border-top-width: 1px;
+  border-color: ${({ theme }) => theme.colors.black};
+  padding: 16px 0;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`
+export const Icon = styled(Feather)`
+  font-size: ${RFValue(18)}px;
+  color: ${({ theme }) => theme.colors.gray500};
+`
+export const CreateAccountTitle = styled.Text`
+  font-size: ${RFValue(18)}px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  color: ${({ theme }) => theme.colors.primary};
+  margin-left: 16px;
+`
