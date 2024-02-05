@@ -14,18 +14,16 @@ interface ScreenNavigationProps {
   navigate: (screen: string) => void;
 }
 
-interface IFormInputs {
-  [name: string]: any;
-}
-
 const schemaSingIn = yup.object({
   email: yup.string().email('Email inválido').required('Email é um campo obrigatório'),
   password: yup.string().required('Senha é um campo obrigatório'),
 })
 
-// interface IFormInputs {
-//   email: string;
-//   password: string;
+type FormData = yup.InferType<typeof schemaSingIn>;
+
+// interface IFormInputs extends FieldValues {
+//   email?: string;
+//   password?: string;
 // }
 
 
@@ -40,7 +38,7 @@ export default function SingIn() {
     }
   })
 
-  const handleSingIn = (form: IFormInputs) => {
+  const handleSingIn = (form: FormData) => {
     const data = {
       email: form.email,
       password: form.password,
