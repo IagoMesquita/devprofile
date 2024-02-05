@@ -6,24 +6,34 @@ import logo from '../../assets/logo.png';
 
 import { useNavigation } from '@react-navigation/native';
 import { useForm, FieldValues } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
+
 
 interface ScreenNavigationProps {
   navigate: (screen: string) => void;
 }
 
-// interface IFormInputs  {
+interface IFormInputs {
+  [name: string]: any;
+}
+
+const schemaSingIn = yup.object({
+  email: yup.string().email('Email inválido').required('Email é um campo obrigatório'),
+  password: yup.string().required('Senha é um campo obrigatório'),
+})
+
+// interface IFormInputs {
 //   email: string;
 //   password: string;
 // }
 
-interface IFormInputs  {
-  [name: string]: any;
-}
 
 export default function SingIn() {
   const navigation = useNavigation<ScreenNavigationProps>()
 
   const { control, handleSubmit, formState: { errors } } = useForm<FieldValues>({
+    resolver: yupResolver(schemaSingIn),
     defaultValues: {
       email: "",
       password: ""
@@ -34,7 +44,7 @@ export default function SingIn() {
     const data = {
       email: form.email,
       password: form.password,
-    } 
+    }
 
     console.log(data)
   };
@@ -55,17 +65,20 @@ export default function SingIn() {
             <View>
               <Title>Faça seu login</Title>
             </View>
-            <InputControl control={control} name='email' placeholder='Digite seu email'
+            <InputControl
+              control={control} name='email' placeholder='Digite seu email' 
+              error={errors.email && errors?.email?.message}
               autoCapitalize='none'
               autoCorrect={false}
               keyboardType='email-address'
             />
-            <InputControl control={control} name='password' placeholder='Digite seu senha'
+            <InputControl control={control} name='password' placeholder='Digite seu senha'  
+              error={errors.password && errors?.password?.message}
               autoCapitalize='none'
               autoCorrect={false}
               secureTextEntry
             />
-            <Buttom title="Entrar"  onPress={handleSubmit(handleSingIn)}/>
+            <Buttom title="Entrar" onPress={handleSubmit(handleSingIn)} />
             <ForgotPasswordButtom>
               <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
             </ForgotPasswordButtom>
