@@ -1,17 +1,52 @@
 import { KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
-import { Input } from '../../components/Forms/Input';
 import { Container, Content, CreateAccount, CreateAccountTitle, ForgotPasswordButtom, ForgotPasswordText, Icon, Logo, Title } from './styles';
+import { InputControl } from '../../components/Forms/InputControl';
 import { Buttom } from '../../components/Forms/Buttom';
 import logo from '../../assets/logo.png';
+
 import { useNavigation } from '@react-navigation/native';
+import { useForm, FieldValues } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
+
 
 interface ScreenNavigationProps {
   navigate: (screen: string) => void;
 }
 
-export default function SingIn() {
+const schemaSingIn = yup.object({
+  email: yup.string().email('Email inválido').required('Email é um campo obrigatório'),
+  password: yup.string().required('Senha é um campo obrigatório'),
+})
 
+type FormData = yup.InferType<typeof schemaSingIn>;
+
+// interface IFormInputs extends FieldValues {
+//   email?: string;
+//   password?: string;
+// }
+
+
+export default function SingIn() {
   const navigation = useNavigation<ScreenNavigationProps>()
+
+  const { control, handleSubmit, formState: { errors } } = useForm<FieldValues>({
+    resolver: yupResolver(schemaSingIn),
+    defaultValues: {
+      email: "",
+      password: ""
+    }
+  })
+
+  const handleSingIn = (form: FormData) => {
+    const data = {
+      email: form.email,
+      password: form.password,
+    }
+
+    console.log(data)
+  };
+
   return (
     <KeyboardAvoidingView
       // enabled
@@ -28,9 +63,20 @@ export default function SingIn() {
             <View>
               <Title>Faça seu login</Title>
             </View>
-            <Input placeholder="Email" />
-            <Input placeholder="Senha" />
-            <Buttom title="Entrar" />
+            <InputControl
+              control={control} name='email' placeholder='Digite seu email' 
+              error={errors.email && errors?.email?.message}
+              autoCapitalize='none'
+              autoCorrect={false}
+              keyboardType='email-address'
+            />
+            <InputControl control={control} name='password' placeholder='Digite seu senha'  
+              error={errors.password && errors?.password?.message}
+              autoCapitalize='none'
+              autoCorrect={false}
+              secureTextEntry
+            />
+            <Buttom title="Entrar" onPress={handleSubmit(handleSingIn)} />
             <ForgotPasswordButtom>
               <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
             </ForgotPasswordButtom>
