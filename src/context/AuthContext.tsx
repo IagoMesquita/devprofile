@@ -2,6 +2,7 @@ import { createContext } from "react";
 
 interface IAuthContext {
   name: string;
+  singIn: () => void;
 }
 
 interface IProps {
@@ -11,12 +12,19 @@ interface IProps {
 export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 
-const values = {
-  name: 'Iago',
 
-}
 
 export function AuthProvider({ children }: IProps) {
+  const singIn = () => {
+    console.log('Logarr!')
+  }
+
+  const values = {
+    name: 'Iago',
+    singIn,
+  
+  }
+
   return (
     <AuthContext.Provider value={values}>
       {children}
