@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, Platform, ScrollView, View } from "react-native";
+import { Alert, KeyboardAvoidingView, Platform, ScrollView, View } from "react-native";
 import { Input } from "../../components/Forms/Input";
 import { BackToSingIn, BackToSingInTitle, Container, Content, Icon, Logo, Title } from "./styles";
 import { Buttom } from "../../components/Forms/Buttom";
@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 import { FieldValues, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { api } from "../../services/api";
 
 interface ScreenNavigationProps {
   goBack: () => void;
@@ -38,14 +39,20 @@ export default function SingUp() {
   })
 
 
-  const handleSingUp = (form: IFormInputs) => {
+  const handleSingUp = async (form: IFormInputs) => {
     const data = {
       name: form.name,
       email: form.email,
       password: form.password,
     } 
 
-    console.log(data)
+    try {
+      await api.post('users', data);
+      Alert.alert('Cadastro realizado com sucesso!', 'Você já pode fazer login no app.')
+    } catch (error) {
+      console.log("Error", error as String);
+      Alert.alert('Erro no cadastro', 'Ocorreu um erro ao realiza cadastro. Tente novamente.')
+    }
   };
 
   return (
