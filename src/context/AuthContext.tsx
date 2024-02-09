@@ -1,8 +1,14 @@
 import { createContext } from "react";
+import { api } from "../services/api";
+
+interface ICredentials {
+  email: string;
+  password: string;
+}
 
 interface IAuthContext {
   name: string;
-  singIn: () => void;
+  singIn: (credential: ICredentials) => void;
 }
 
 interface IProps {
@@ -15,8 +21,15 @@ export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 
 export function AuthProvider({ children }: IProps) {
-  const singIn = () => {
-    console.log('Logarr!')
+  const singIn = async ({ email, password }: ICredentials) => {
+    try {
+      const response = await api.post('sessions', {
+        email,
+        password
+      })
+    } catch (error) {
+      throw new Error(error as string)
+    }
   }
 
   const values = {
