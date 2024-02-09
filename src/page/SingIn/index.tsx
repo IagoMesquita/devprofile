@@ -51,8 +51,15 @@ export default function SingIn() {
       password: form.password,
     }
 
-    setIsLoading(true);
-    singIn(data)
+    try {
+      setIsLoading(true);
+      singIn(data)
+    } catch (error) {
+      console.error('ERROR', error as string) 
+    } finally{
+      setIsLoading(false)
+    }
+
   };
 
   return (
