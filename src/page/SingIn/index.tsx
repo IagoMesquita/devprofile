@@ -8,6 +8,8 @@ import { useNavigation } from '@react-navigation/native';
 import { useForm, FieldValues } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { useState } from 'react';
+import { useAuth } from '../../Hooks/useAuth';
 
 
 interface ScreenNavigationProps {
@@ -28,6 +30,9 @@ type FormData = yup.InferType<typeof schemaSingIn>;
 
 
 export default function SingIn() {
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigation = useNavigation<ScreenNavigationProps>()
 
   const { control, handleSubmit, formState: { errors } } = useForm<FieldValues>({
@@ -38,13 +43,16 @@ export default function SingIn() {
     }
   })
 
+  const { singIn } = useAuth();
+
   const handleSingIn = (form: FormData) => {
     const data = {
       email: form.email,
       password: form.password,
     }
 
-    console.log(data)
+    setIsLoading(true);
+    singIn(data)
   };
 
   return (
@@ -76,7 +84,7 @@ export default function SingIn() {
               autoCorrect={false}
               secureTextEntry
             />
-            <Buttom title="Entrar" onPress={handleSubmit(handleSingIn)} />
+            <Buttom title="Entrar" onPress={handleSubmit(handleSingIn)} disabled={isLoading}/>
             <ForgotPasswordButtom>
               <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
             </ForgotPasswordButtom>
