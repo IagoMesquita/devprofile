@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { api } from "../services/api";
+import { Alert } from "react-native";
 
 interface ICredentials {
   email: string;
@@ -26,16 +27,21 @@ export function AuthProvider({ children }: IProps) {
       const response = await api.post('sessions', {
         email,
         password
-      })
+      });
+      console.log('Response', response.data);
     } catch (error) {
-      throw new Error(error as string)
+      // throw new Error(error as string);
+      Alert.alert(
+        'Erro na autenticação.',
+        'Ocorreu um erro ao fazer login, verifique as credenciais.'
+      )
     }
   }
 
   const values = {
     name: 'Iago',
     singIn,
-  
+
   }
 
   return (
