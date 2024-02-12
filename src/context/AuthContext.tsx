@@ -16,7 +16,7 @@ interface ICredentials {
 }
 
 interface IAuthContext {
-  name: string;
+  user: IUser;
   singIn: (credential: ICredentials) => void;
 }
 
@@ -58,6 +58,7 @@ export function AuthProvider({ children }: IProps) {
       await AsyncStorage.setItem('tokenData', token);
       await AsyncStorage.setItem('userData', user);
 
+      setData({token, user});
     } catch (error) {
       // throw new Error(error as string);
       Alert.alert(
@@ -68,7 +69,7 @@ export function AuthProvider({ children }: IProps) {
   }
 
   const values = {
-    name: 'Iago',
+    user: data.user,
     singIn,
 
   }
