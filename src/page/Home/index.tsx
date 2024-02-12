@@ -1,32 +1,37 @@
-import { 
+import {
   Container,
-  Header, 
-  Icon, 
-  UseInforDetail, 
-  UserAvatar, 
-  UserAvatarButton, 
-  UserGreenting, 
+  Header,
+  Icon,
+  UseInforDetail,
+  UserAvatar,
+  UserAvatarButton,
+  UserGreenting,
   UserInfo,
   UserName,
-  UserWrapper 
+  UserWrapper
 } from './styles';
 import avatarDefault from '../../assets/avatar02.png'
+import { useAuth } from '../../Hooks/useAuth';
 
 export function Home() {
+  const { user } = useAuth();
   return (
     <Container>
       <Header>
         <UserWrapper>
           <UserInfo>
-            <UserAvatarButton onPress={()=> null}>
-              <UserAvatar source={avatarDefault}/>
+            <UserAvatarButton onPress={() => null}>
+              <UserAvatar source={
+                user.avatar_url ? { uri: user.avatar_url } : avatarDefault
+              }
+              />
             </UserAvatarButton>
             <UseInforDetail>
               <UserGreenting>Olá,</UserGreenting>
-              <UserName>Iago</UserName>
+              <UserName>{user.name}</UserName>
             </UseInforDetail>
           </UserInfo>
-          <Icon name='power'/>
+          <Icon name='power' />
         </UserWrapper>
       </Header>
     </Container>
