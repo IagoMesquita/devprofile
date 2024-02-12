@@ -8,10 +8,11 @@ export  function useAuth(): IAuthContext {
   if(!context) {
     throw new Error('useAuth deve ser usado em um AuthProvider')
   }
-  const {user, singIn} = useContext(AuthContext)
+  const {user, singIn, singOut} = useContext(AuthContext)
   
   return {
     user,
-    singIn
+    singIn,
+    singOut
   }
 } 

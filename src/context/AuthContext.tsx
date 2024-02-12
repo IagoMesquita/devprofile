@@ -18,6 +18,7 @@ interface ICredentials {
 export interface IAuthContext {
   user: IUser;
   singIn: (credential: ICredentials) => void;
+  singOut: () => void;
 }
 
 interface IProps {
@@ -68,9 +69,17 @@ export function AuthProvider({ children }: IProps) {
     }
   }
 
+  const singOut = async () => {
+    await AsyncStorage.removeItem(tokenData);
+    await AsyncStorage.removeItem(userData);
+
+    setData({} as IAuthState)
+  } 
+
   const values = {
     user: data.user,
     singIn,
+    singOut
 
   }
 
