@@ -2,6 +2,8 @@ import { createContext } from "react";
 import { api } from "../services/api";
 import { Alert } from "react-native";
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 interface ICredentials {
   email: string;
   password: string;
@@ -18,7 +20,8 @@ interface IProps {
 }
 export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
-
+const tokenData = "@DevProfile:token";
+const userData = "@DevProfile:user";
 
 
 export function AuthProvider({ children }: IProps) {
@@ -29,6 +32,10 @@ export function AuthProvider({ children }: IProps) {
         password
       });
       console.log('Response', response.data);
+      const {token, user} = response.data;
+      await AsyncStorage.setItem('tokenData', token);
+      await AsyncStorage.setItem('userData', user);
+
     } catch (error) {
       // throw new Error(error as string);
       Alert.alert(
