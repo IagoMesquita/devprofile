@@ -15,7 +15,7 @@ interface ICredentials {
   password: string;
 }
 
-interface IAuthContext {
+export interface IAuthContext {
   user: IUser;
   singIn: (credential: ICredentials) => void;
 }
