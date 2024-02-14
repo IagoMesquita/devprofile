@@ -92,7 +92,7 @@ export default function SingIn() {
               secureTextEntry
             />
             <Buttom title="Entrar" onPress={handleSubmit(handleSingIn)} disabled={isLoading}/>
-            <ForgotPasswordButtom>
+            <ForgotPasswordButtom onPress={() => navigation.navigate('ForgotPassword')}>
               <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
             </ForgotPasswordButtom>
           </Content>
