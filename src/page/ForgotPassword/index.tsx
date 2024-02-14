@@ -1,5 +1,4 @@
 import { Alert, KeyboardAvoidingView, Platform, ScrollView, View } from "react-native";
-import { Input } from "../../components/Forms/Input";
 import { BackToSingIn, BackToSingInTitle, Container, Content, Icon, Logo, Title } from "./styles";
 import { Buttom } from "../../components/Forms/Buttom";
 import logo from '../../assets/logo.png';
@@ -70,7 +69,7 @@ export default function ForgotPassword() {
           <Content>
             <Logo source={logo} />
             <View>
-              <Title>Crie sua conta</Title>
+              <Title>Esqueci minha senha</Title>
             </View>
             <InputControl control={control} name='email' placeholder='Digite seu email'
               error={errors.email && errors?.email?.message}
@@ -78,7 +77,7 @@ export default function ForgotPassword() {
               autoCorrect={false}
               keyboardType='email-address'
             />
-            <Buttom title="Criar conta"  onPress={handleSubmit(handleForgotPassword)}/>
+            <Buttom title="Enviar"  onPress={handleSubmit(handleForgotPassword)}/>
           </Content>
         </Container>
       </ScrollView>
