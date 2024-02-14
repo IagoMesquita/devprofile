@@ -53,3 +53,4 @@ export const Icon = styled(Feather)`
   font-size:  ${RFValue(24)}px;
   color: ${({ theme }) => theme.colors.dark};
 `
+export const LogoutButton = styled.TouchableOpacity``
