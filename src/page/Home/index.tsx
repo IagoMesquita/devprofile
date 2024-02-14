@@ -2,6 +2,7 @@ import {
   Container,
   Header,
   Icon,
+  LogoutButton,
   UseInforDetail,
   UserAvatar,
   UserAvatarButton,
@@ -14,7 +15,7 @@ import avatarDefault from '../../assets/avatar02.png'
 import { useAuth } from '../../Hooks/useAuth';
 
 export function Home() {
-  const { user } = useAuth();
+  const {user, singOut} = useAuth();
   return (
     <Container>
       <Header>
@@ -31,7 +32,9 @@ export function Home() {
               <UserName>{user.name}</UserName>
             </UseInforDetail>
           </UserInfo>
-          <Icon name='power' />
+          <LogoutButton onPress={singOut}>
+            <Icon name='power' />
+          </LogoutButton>
         </UserWrapper>
       </Header>
     </Container>
