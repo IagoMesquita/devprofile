@@ -1,3 +1,4 @@
+import ForgotPassword from "../page/ForgotPassword";
 import SingIn from "../page/SingIn";
 import SingUp from "../page/SingUp";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -12,6 +13,7 @@ export function AuthRoutes() {
     >
       <Stack.Screen name="SingIn" component={SingIn}/>
       <Stack.Screen name="SingUp" component={SingUp}/>
+      <Stack.Screen name="ForgotPassword" component={ForgotPassword}/>
     </Stack.Navigator>
   )
 } 
