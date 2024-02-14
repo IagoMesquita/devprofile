@@ -13,6 +13,7 @@ import { api } from "../../services/api";
 
 interface ScreenNavigationProps {
   goBack: () => void;
+  navigate: (screen: string) => void;
 }
 
 interface IFormInputs {
@@ -45,10 +46,13 @@ export default function ForgotPassword() {
       Alert.alert(
         'Email enviado.', 
         'Você receberá um e-mail com as intruções para redefinição de senha.'
-        )
+        ),
+        navigation.navigate('SingIn');
     } catch (error) {
-      console.log("Error", error as String);
-      Alert.alert('Erro no cadastro', 'Ocorreu um erro ao realiza cadastro. Tente novamente.')
+      Alert.alert(
+        'Erro no envio de email.', 
+        'Ocorreu um erro ao enviar email. Tente novamente.'
+        )
     }
   };
 
