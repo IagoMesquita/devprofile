@@ -1,4 +1,5 @@
 import { Alert, KeyboardAvoidingView, Platform, ScrollView, View } from "react-native";
+import { Input } from "../../components/Forms/Input";
 import { BackToSingIn, BackToSingInTitle, Container, Content, Icon, Logo, Title } from "./styles";
 import { Buttom } from "../../components/Forms/Buttom";
 import logo from '../../assets/logo.png';
@@ -20,38 +21,41 @@ interface IFormInputs {
 }
 
 const schemaSingUp = yup.object({
-  email: yup.string().email('Email inválido').required('Email é um campo obrigatório'),
+  token: yup.string().uuid('Código inválido').required('Informe o código.'),
+  password: yup.string().required('Informe a nova senha.'),
+  password_confirmation: yup
+    .string()
+    .oneOf([yup.ref('password')], 'As senha não correspondem.')
 })
 
 
-export default function ForgotPassword() {
+export default function ResetPassword() {
   const navigation = useNavigation<ScreenNavigationProps>()
 
   const { control, handleSubmit, formState: { errors } } = useForm<FieldValues>({
     resolver: yupResolver(schemaSingUp),
     defaultValues: {
-      email: "",
+      token: "",
+      password: "",
+      password_confirmation: ""
     }
   })
 
 
-  const handleForgotPassword = async (form: IFormInputs) => {
+  const handleResetPassword = async (form: IFormInputs) => {
     const data = {
-      email: form.email,
-    } 
+      token: form.token,
+      password: form.password,
+      password_confirmation: form.password_confirmation,
+    }
 
     try {
-      await api.post('password/forgot', data);
-      Alert.alert(
-        'Email enviado.', 
-        'Você receberá um e-mail com as intruções para redefinição de senha.'
-        ),
-        navigation.navigate('ResetPassword');
+      await api.post('password/reset', data);
+      Alert.alert('Senha redefinida!', 'A senha foi redefinida com sucess.');
+
+      navigation.navigate('SingIn');
     } catch (error) {
-      Alert.alert(
-        'Erro no envio de email.', 
-        'Ocorreu um erro ao enviar email. Tente novamente.'
-        )
+      Alert.alert('Erro ao resetar senha.', 'Ocorreu um erro ao resetar sua senha. Tente novamente.')
     }
   };
 
@@ -69,15 +73,27 @@ export default function ForgotPassword() {
           <Content>
             <Logo source={logo} />
             <View>
-              <Title>Esqueci minha senha</Title>
+              <Title>Redefinir a senha</Title>
             </View>
-            <InputControl control={control} name='email' placeholder='Digite seu email'
-              error={errors.email && errors?.email?.message}
+            <InputControl control={control} name='token' placeholder='Código.'
+              error={errors.token && errors?.token?.message}
               autoCapitalize='none'
               autoCorrect={false}
-              keyboardType='email-address'
+              place
             />
-            <Buttom title="Enviar"  onPress={handleSubmit(handleForgotPassword)}/>
+            <InputControl control={control} name='password' placeholder='Digite seu senha.'
+              error={errors.password && errors?.password?.message}
+              autoCapitalize='none'
+              autoCorrect={false}
+              secureTextEntry
+            />
+            <InputControl control={control} name='password_confirmation' placeholder='Confirme a senha.'
+              error={errors.password_confirmation && errors?.password_confirmation?.message}
+              autoCapitalize='none'
+              autoCorrect={false}
+              secureTextEntry
+            />
+            <Buttom title="Redefinir" onPress={handleSubmit(handleResetPassword)} />
           </Content>
         </Container>
       </ScrollView>

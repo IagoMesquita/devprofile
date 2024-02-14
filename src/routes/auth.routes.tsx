@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SingIn from "../page/SingIn";
 import SingUp from "../page/SingUp";
 import ForgotPassword from "../page/ForgotPassword";
+import ResetPassword from "../page/ResetPassword";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,6 +15,7 @@ export function AuthRoutes() {
       <Stack.Screen name="SingIn" component={SingIn}/>
       <Stack.Screen name="SingUp" component={SingUp}/>
       <Stack.Screen name="ForgotPassword" component={ForgotPassword}/>
+      <Stack.Screen name="ResetPassword" component={ResetPassword}/>
     </Stack.Navigator>
   )
 } 
