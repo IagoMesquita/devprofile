@@ -57,7 +57,7 @@ export function AuthProvider({ children }: IProps) {
       console.log('Response', response.data);
       const {token, user} = response.data;
       await AsyncStorage.setItem('tokenData', token);
-      await AsyncStorage.setItem('userData', user);
+      await AsyncStorage.setItem('userData', JSON.stringify(user));
 
       setData({token, user});
     } catch (error) {
