@@ -1,7 +1,7 @@
-import ForgotPassword from "../page/ForgotPassword";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SingIn from "../page/SingIn";
 import SingUp from "../page/SingUp";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ForgotPassword from "../page/ForgotPassword";
 
 const Stack = createNativeStackNavigator();
 

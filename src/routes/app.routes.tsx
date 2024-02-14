@@ -1,6 +1,4 @@
-import ForgotPassword from "../page/ForgotPassword";
 import { Home } from "../page/Home";
-import SingUp from "../page/SingUp";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();
@@ -12,7 +10,6 @@ export function AppRoutes() {
       initialRouteName="Home"
     >
       <Stack.Screen name="Home" component={Home}/>
-      <Stack.Screen name="ForgotPassword" component={ForgotPassword}/>
     </Stack.Navigator>
   )
 } 
