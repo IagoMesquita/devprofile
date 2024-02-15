@@ -41,7 +41,9 @@ export function AuthProvider({ children }: IProps) {
       const user = await AsyncStorage.getItem(JSON.stringify(userData));
 
       if (token && user) {
-        setData({token, user: JSON.parse(user)});
+        setData({ token, user: JSON.parse(user) });
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
       }
     }
 
@@ -54,12 +56,13 @@ export function AuthProvider({ children }: IProps) {
         email,
         password
       });
-      console.log('Response', response.data);
-      const {token, user} = response.data;
+      const { token, user } = response.data;
       await AsyncStorage.setItem('tokenData', token);
       await AsyncStorage.setItem('userData', JSON.stringify(user));
 
-      setData({token, user});
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      setData({ token, user });
     } catch (error) {
       // throw new Error(error as string);
       Alert.alert(
@@ -74,7 +77,7 @@ export function AuthProvider({ children }: IProps) {
     await AsyncStorage.removeItem(userData);
 
     setData({} as IAuthState)
-  } 
+  }
 
   const values = {
     user: data.user,
