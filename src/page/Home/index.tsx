@@ -14,9 +14,26 @@ import {
 import avatarDefault from '../../assets/avatar02.png'
 import { useAuth } from '../../Hooks/useAuth';
 import { Alert } from 'react-native';
+import { useEffect, useState } from 'react';
+import { IUser } from '../../model/user';
+import { api } from '../../services/api';
 
 export function Home() {
+  const [users, setUsers] = useState<IUser[]>([]);
   const {user, singOut} = useAuth();
+
+  useEffect(() => {
+    async function loadUsers() {
+      const response = await api.get('users');
+      console.log("RESPONSE", response.data);
+
+      setUsers([...response.data]);
+      console.log("USER", users)
+    }
+
+    loadUsers();
+  }, [])
+
 
   const handleSingOut = () => {
     Alert.alert('Tem certeza?', 'Deseja realmente sair?', [
