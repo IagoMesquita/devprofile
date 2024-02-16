@@ -3,7 +3,7 @@ import {
   Container, EmailData, EmailTitle, NameData, NameTitle, UserAvatar, UserDetail, UserEmailDetail, UserNameDetail
 } from "./styles";
 
-import avatarDefault from '../../assets/avatar02.png'
+import avatarDefault from '../../assets/avatar03.png'
 interface UserProps {
   data: IUser;
   onPress: () => void;
