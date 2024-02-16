@@ -3,6 +3,7 @@ import {
   Container, EmailData, EmailTitle, NameData, NameTitle, UserAvatar, UserDetail, UserEmailDetail, UserNameDetail
 } from "./styles";
 
+import avatarDefault from '../../assets/avatar02.png'
 interface UserProps {
   data: IUser;
   onPress: () => void;
@@ -21,7 +22,7 @@ export function User({data, onPress }: UserProps) {
           <EmailData>{data.email}</EmailData>
         </UserEmailDetail>
       </UserDetail>
-      <UserAvatar />
+      <UserAvatar source={data.avatar_url ? {uri: data.avatar_url} : avatarDefault}/>
     </Container>
   );
 }
