@@ -9,6 +9,8 @@ import {
   UserGreenting,
   UserInfo,
   UserList,
+  UserListEmpty,
+  UserListHeader,
   UserName,
   UserWrapper
 } from './styles';
@@ -80,6 +82,8 @@ export function Home() {
         data={users}
         renderItem={({ item }) => <User data={item} onPress={() => { }} />}
         keyExtractor={item => item.id}
+        ListHeaderComponent={<UserListHeader>Usuários</UserListHeader>}
+        ListEmptyComponent={<UserListEmpty>Ops! Ainda não há registros.</UserListEmpty>}
       />
     </Container>
   )
