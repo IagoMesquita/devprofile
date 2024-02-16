@@ -17,6 +17,7 @@ import { Alert } from 'react-native';
 import { useEffect, useState } from 'react';
 import { IUser } from '../../model/user';
 import { api } from '../../services/api';
+import { User } from '../../components/User';
 
 export function Home() {
   const [users, setUsers] = useState<IUser[]>([]);
@@ -69,6 +70,7 @@ export function Home() {
           </LogoutButton>
         </UserWrapper>
       </Header>
+      <User/>
     </Container>
   )
 }
