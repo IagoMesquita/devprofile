@@ -1,18 +1,24 @@
+import { IUser } from "../../model/user";
 import {
   Container, EmailData, EmailTitle, NameData, NameTitle, UserAvatar, UserDetail, UserEmailDetail, UserNameDetail
 } from "./styles";
 
-export function User() {
+interface UserProps {
+  data: IUser;
+  onPress: () => void;
+}
+
+export function User({data, onPress }: UserProps) {
   return (
-    <Container>
+    <Container onPress={onPress}>
       <UserDetail>
         <UserNameDetail>
           <NameTitle>NOME</NameTitle>
-          <NameData>Iago Developer</NameData>
+          <NameData>{data.name}</NameData>
         </UserNameDetail>
         <UserEmailDetail>
           <EmailTitle>EMAIL</EmailTitle>
-          <EmailData>iago@text.com</EmailData>
+          <EmailData>{data.email}</EmailData>
         </UserEmailDetail>
       </UserDetail>
       <UserAvatar />
