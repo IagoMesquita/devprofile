@@ -8,6 +8,7 @@ import {
   UserAvatarButton,
   UserGreenting,
   UserInfo,
+  UserList,
   UserName,
   UserWrapper
 } from './styles';
@@ -21,7 +22,7 @@ import { User } from '../../components/User';
 
 export function Home() {
   const [users, setUsers] = useState<IUser[]>([]);
-  const {user, singOut} = useAuth();
+  const { user, singOut } = useAuth();
 
   useEffect(() => {
     async function loadUsers() {
@@ -40,7 +41,7 @@ export function Home() {
     Alert.alert('Tem certeza?', 'Deseja realmente sair?', [
       {
         text: 'Cancelar',
-        onPress: () => {}
+        onPress: () => { }
       },
       {
         text: 'Sair',
@@ -70,9 +71,14 @@ export function Home() {
           </LogoutButton>
         </UserWrapper>
       </Header>
-      <FlatList
+      {/* <FlatList
         data={users}
         renderItem={({item}) => <User data={item}  onPress={() => {}}/>}
+        keyExtractor={item => item.id}
+      /> */}
+      <UserList
+        data={users}
+        renderItem={({ item }) => <User data={item} onPress={() => { }} />}
         keyExtractor={item => item.id}
       />
     </Container>
