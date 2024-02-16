@@ -32,6 +32,7 @@ export const UserInfo = styled.View`
 `;
 
 export const UserAvatarButton = styled.TouchableOpacity``;
+
 export const UserAvatar = styled.Image`
   width: ${RFValue(52)}px;
   height: ${RFValue(52)}px;
@@ -62,8 +63,22 @@ export const UserList = styled(
 ).attrs({
   contentContainerStyle: {
     padding: 24,
-    borderColor: "red",
-    borderWidth: 1,
+    // borderColor: "red",
+    // borderWidth: 1,
   },
   showsVerticalScrollIndicator: false,
 })``;
+
+export const UserListEmpty = styled.Text`
+  font-size: ${RFValue(18)}px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  color: ${({ theme }) => theme.colors.gray500};
+`;
+
+export const UserListHeader = styled.Text`
+  font-size: ${RFValue(24)}px;
+  font-family: ${({ theme }) => theme.fonts.bold};
+  font-weight: bold;
+  color: ${({ theme }) => theme.colors.primary};
+  margin-bottom: ${RFValue(8)}px;;
+`;
