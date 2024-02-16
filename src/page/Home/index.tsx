@@ -13,7 +13,7 @@ import {
 } from './styles';
 import avatarDefault from '../../assets/avatar02.png'
 import { useAuth } from '../../Hooks/useAuth';
-import { Alert } from 'react-native';
+import { Alert, FlatList } from 'react-native';
 import { useEffect, useState } from 'react';
 import { IUser } from '../../model/user';
 import { api } from '../../services/api';
@@ -70,7 +70,11 @@ export function Home() {
           </LogoutButton>
         </UserWrapper>
       </Header>
-      <User/>
+      <FlatList
+        data={users}
+        renderItem={({item}) => <User data={item}  onPress={() => {}}/>}
+        keyExtractor={item => item.id}
+      />
     </Container>
   )
 }
