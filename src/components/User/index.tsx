@@ -6,12 +6,12 @@ import {
 import avatarDefault from '../../assets/avatar03.png'
 interface UserProps {
   data: IUser;
-  onPress: () => void;
+  onPress: (userId: string) => void;
 }
 
 export function User({data, onPress }: UserProps) {
   return (
-    <Container onPress={onPress}>
+    <Container onPress={() => onPress(data.id)}>
       <UserDetail>
         <UserNameDetail>
           <NameTitle>NOME</NameTitle>
