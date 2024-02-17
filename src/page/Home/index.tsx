@@ -21,10 +21,17 @@ import { useEffect, useState } from 'react';
 import { IUser } from '../../model/user';
 import { api } from '../../services/api';
 import { User } from '../../components/User';
+import { useNavigation } from '@react-navigation/native';
+
+interface ScreenNavigateProps {
+  navigate: (screen: string, params?: unknown) => void;
+}
 
 export function Home() {
   const [users, setUsers] = useState<IUser[]>([]);
   const { user, singOut } = useAuth();
+
+  const {navigate} = useNavigation<ScreenNavigateProps>()
 
   useEffect(() => {
     async function loadUsers() {
@@ -51,6 +58,10 @@ export function Home() {
       }
     ])
   };
+
+  const handleUserDetail = (userId: string) => {
+    navigate('UserDetails', {userId})
+  }
 
   return (
     <Container>
@@ -80,7 +91,7 @@ export function Home() {
       /> */}
       <UserList
         data={users}
-        renderItem={({ item }) => <User data={item} onPress={() => { }} />}
+        renderItem={({ item }) => <User data={item} onPress={() => handleUserDetail(item.id)} />}
         keyExtractor={item => item.id}
         ListHeaderComponent={<UserListHeader>Usuários</UserListHeader>}
         ListEmptyComponent={<UserListEmpty>Ops! Ainda não há registros.</UserListEmpty>}
